@@ -1,0 +1,74 @@
+{% extends 'base-layout.html' %}
+{% load bootstrap %}
+{% load static %}
+
+{% block title %}
+<title>Order list</title>
+{% endblock title %}
+
+{% block main_content %}
+<div class="back_btn">
+    <a href="/waiter/my_cart">
+        <button><i class="fas fa-chevron-left"></i><span>BACK</span></button>
+    </a>
+</div>
+<div class="container cart-page">
+        <table>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+        </tr>
+            {% for order in orders %}
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="/static/img/intro.jpg" alt="...">
+                    <div>
+                        <p>{{order.item.name}}</p>
+                        <small>${{order.item.price}}</small>
+                        <br>
+                        <a href="/waiter/remove_from_cart/{{order.id}}">Remove</a>
+                    </div>
+                </div>
+            </td>
+            <td><input type="number" value="{{order.quantity}}"></td>
+            <td>$ {{order.total_price}}</td>
+        </tr>
+            {% endfor %}
+        </table>
+
+    <div class="total_price">
+        <table>
+            <tr>
+                <td>Subtotal</td>
+                <td>${{sub_total_price}}</td>
+            </tr>
+            <tr>
+                <td>VAT</td>
+                <td>$15.00</td>
+            </tr>
+            <tr>
+                <td>Grand Total</td>
+                <td>$ {{grand_total_price}}</td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    <a href="/waiter/check_out">
+                        <button class="btn btn-success">Checkout</button>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+</div>
+
+
+
+{% endblock main_content %}

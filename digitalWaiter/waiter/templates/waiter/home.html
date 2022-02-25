@@ -1,0 +1,37 @@
+{% extends 'base-layout.html' %}
+{% load bootstrap %}
+{% load static %}
+
+{% block title %}
+<title>Home</title>
+{% endblock title %}
+
+{% block main_content %}
+
+
+
+
+<div class="container-fluid">
+    <nav class="sidebar">
+        <div class="text">MENU</div>
+        {% if categories %}
+            <ul>
+                {% for item in categories %}
+                <li><a href="/waiter/category_item/{{item.id}}">{{item.name|title}}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif%}
+    </nav>
+
+</div>
+<div class="popup">
+        <button class="close" id="close">&times;</button>
+        <h3>ADMIN LOGIN</h3>
+        <p>Please provide credentials to login.</p>
+        <a onclick="window.location.href='login'">LOGIN</a>
+
+</div>
+
+{% endblock main_content %}
+
+

@@ -1,0 +1,50 @@
+{% extends 'base-layout.html' %}
+{% load bootstrap %}
+{% load static %}
+
+{% block title %}
+<title>Food Description</title>
+{% endblock title %}
+
+{% block main_content %}
+<div class="back_btn">
+        <button onclick="window.location.href='home'"><i class="fas fa-chevron-left"></i><span>BACK</span></button>
+</div>
+
+<div class="clearfix">
+  <img src="/static/img/intro.jpg" class="col-md-6 float-md-end mb-3 ms-md-3" alt="...">
+    <div class="textbox_item">
+        {% if item %}
+       <h1>{{item.name}}</h1><br>
+        <p>{{item.description}}</p>
+        <br>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                 <div class="qty">
+                    <input type="number" name="quantity" placeholder="Enter Quantity" min="1">
+                 </div>
+                <a href="/waiter/my_cart">
+                    <button type="submit" class="btn btn-success btn-lg mt-3 mb-3" id="order1">
+                      Order
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="cart" viewBox="0 0 16 16">
+                          <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                      </svg>
+
+                </button>
+                </a>
+            </div>
+
+        </form>
+        <div class="order mt-3">
+            <h4>$ {{item.price}}</h4>
+            <a href="/waiter/home"><button type="button" class="btn btn-success btn-lg" id="order" >+ Order More</button></a>
+
+
+        </div>
+    {% endif %}
+    </div>
+</div>
+
+
+{% endblock main_content %}

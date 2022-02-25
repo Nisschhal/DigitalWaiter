@@ -1,0 +1,36 @@
+{% extends 'base-layout.html' %}
+{% load bootstrap %}
+{% load static %}
+
+{% block title %}
+<title>Home</title>
+{% endblock title %}
+
+{% block main_content %}
+<div class="container-fluid">
+
+
+    <div class="main text-center">
+        {% if category_items %}
+        {% for item in category_items %}
+        <a href="/waiter/item/{{item.id}}/{{item.category.id}}">
+
+        <div class="card m-3" style="width: 18rem;">
+                <img class="card-img-top" src="/static/img/intro.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{item.name}}</h5>
+                    <p class="card-text">{{item.description|safe|truncatewords:10}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+        </div>
+        </a>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+
+</div>
+
+
+{% endblock main_content %}
+
